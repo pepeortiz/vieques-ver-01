@@ -37,8 +37,15 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic&subset=latin,cyrillic-ext,greek-ext,greek,latin-ext' rel='stylesheet' type='text/css'>
    
+
     <!-- Included JS Files -->
 	<script src="javascripts/modernizr.foundation.js"></script>
+    
+    <!-- Brightcove Player Script -->
+	<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
+    <!-- Flash-only Player API script -->
+    <script type="text/javascript" src="http://admin.brightcove.com/js/APIModules_all.js"></script>
+
     
 </head>
 <body id="homepage">
@@ -169,23 +176,19 @@
 
 <p class="page-content">A 10 años de que la Isla Nena se pintara en el mapa internacional, protagonistas de ese acontecimiento coincidieron en que el junte multisectorial que se dio tras la muerte de David Sanes Rodríguez, fallecido el 19 de abril de 1999 por una bomba detonada "por error", es la principal lección de la lucha contra la Marina.</p>
  
- <div class="end_video_container_box video-wrapper video2316625440001" onclick="BCL1.addPlayer()" style="">
+<div class="end_video_container_box-2316625449001" onclick="BCL1.addPlayer()">
 	<div id="BCVplaceHolder1"></div>
 </div>
 
-<!-- Brightcove Player Script -->
-<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
-<!-- Flash-only Player API script -->
-<script type="text/javascript" src="http://admin.brightcove.com/js/APIModules_all.js"></script>
 <script type="text/javascript">
 // namespace to keep the global clear of clutter
 var BCL1 = {};
 // data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
 BCL1.playerData = { "playerID" : "1464964203001",
                     "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
-                    "width" : "480",
-                    "height" : "270",
-                    "videoID" : "2316625440001" };
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316625449001" };
 
 // template for the player object - will populate it with data using markup()
 BCL1.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL1.onTemplateLoaded\"</object>";
@@ -226,6 +229,55 @@ BCL1.markup = function (html, data) {
 
 <p class="page-content">"¡Sacar a la Marina de Vieques es el logro más grande que se ha dado en los 500 años de historia de este país!", exclamó el exalcalde viequense Dámaso Serrano, bajo cuyo mandato se dio la desmilitarización de la Isla Nena. La Marina salió de Vieques el 1 de mayo de 2003.</p>
 
+<div class="end_video_container_box-2316625440001" onclick="BCL2.addPlayer()">
+	<div id="BCVplaceHolder2"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL2 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL2.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316625440001" };
+
+// template for the player object - will populate it with data using markup()
+BCL2.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL2.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL2.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL2.markup(BCL2.playerTemplate, BCL2.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder2").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL2.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL2.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL2.experienceModule = BCL2.player.getModule(APIModules.EXPERIENCE);
+  BCL2.videoPlayer = BCL2.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL2.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
 <p class="page-content">"La lucha contra la Marina en Vieques tuvo la fuerza de unir a todo un pueblo. Van a pasar muchos años más antes de que se conozca lo verdaderamente significativa que fue esta lucha, que se intentó encasillar políticamente, pero nunca se pudo... por eso se dio el triunfo", agregó, por su parte, el ambientalista Alberto de Jesús, alias Tito Kayak, quien estableció el primer campamento de desobediencia civil en Vieques a dos días del deceso de Sanes Rodríguez.</p>
 
 <div class="elpasado-right-rail-profile" style="">
@@ -241,14 +293,58 @@ BCL1.markup = function (html, data) {
 
 <p class="page-content">Rabin se refirió a que desde antes de la muerte de Sanes Rodríguez, que -sin duda alguna- catapultó el movimiento, varias organizaciones ya insistían en sacar a la Marina. Tras el deceso, se creó una red de apoyo a la Isla Nena dentro y fuera del país, además de que se concienció sobre los derechos humanos de los viequenses y los daños ambientales que suponían las prácticas militares.</p>
 
-<div class="elpasado-right-rail-profile" style="">
-	<div class="elpasado-right-rail-profile-box" style="">
-    	<img src="images/protagonistas/Jose-Rivera-Santana.jpg" width="65" height="65" border="0" alt="" title="" />
-    </div>
-	<div class="elpasado-right-rail-profile-text" style="">
-	    <strong>José "Tato" Rivera Santana</strong>,<br />planificador ambiental (video)
-    </div>
+
+
+<div class="end_video_container_box-2316693393001" onclick="BCL3.addPlayer()">
+	<div id="BCVplaceHolder3"></div>
 </div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL3 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL3.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316693393001" };
+
+// template for the player object - will populate it with data using markup()
+BCL3.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL3.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL3.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL3.markup(BCL3.playerTemplate, BCL3.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder3").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL3.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL3.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL3.experienceModule = BCL3.player.getModule(APIModules.EXPERIENCE);
+  BCL3.videoPlayer = BCL3.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL3.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
+
 
 <p class="page-content">En opinión del planificador ambiental José "Tato" Rivera Santana, la lucha contra la Marina significó la comprensión del pueblo viequense de que literalmente se batían entre la vida y la muerte por ser escenario de ejercicios bélicos desde 1941.</p>
 
@@ -322,7 +418,7 @@ BCL1.markup = function (html, data) {
                     <div class="divider"></div>
 
 <div style="clear: right;float: right;position: relative;padding: 6px 0 0 10px; height: 452px !important; margin-bottom: 30px; padding-left: 25px !important;">
-	<img src="images/mirada-al-pasado/batalla-historica-300x450-01.jpg" width="300" height="450" alt="" title="" border="0" style="border: 1px solid #D8D8D8;" />
+	<img src="images/mirada-al-pasado/comienzo-de-una-lucha-300x450-01.jpg" width="300" height="450" alt="" title="" border="0" style="border: 1px solid #D8D8D8;" />
 </div>
 
 <p class="page-content">La muerte de David Sanes Rodríguez el 19 de abril de 1999 fue el catalítico de un movimiento social sin precedentes que propició -cuatro años más tarde- la salida definitiva de la Marina de Guerra de Estados Unidos de la isla municipio de Vieques.</p>
@@ -332,48 +428,43 @@ BCL1.markup = function (html, data) {
 <p class="page-content">"La lucha en Vieques viene desde los años 40. Los abusos que allí se cometían aquí no se conocen", sostuvo el excomisionado especial para Vieques y Culebra, Juan R. Fernández.</p>
 
 
-
-<div class="end_video_container_box video-wrapper" onclick="BCL2.addPlayer()">
-	<div id="BCVplaceHolder2"></div>
+<div class="end_video_container_box-2316607166001" onclick="BCL4.addPlayer()">
+	<div id="BCVplaceHolder4"></div>
 </div>
 
-<!-- Brightcove Player Script -->
-<script language="JavaScript" type="text/javascript" src="http://admin.brightcove.com/js/BrightcoveExperiences.js"></script>
-<!-- Flash-only Player API script -->
-<script type="text/javascript" src="http://admin.brightcove.com/js/APIModules_all.js"></script>
 <script type="text/javascript">
 // namespace to keep the global clear of clutter
-var BCL2 = {};
+var BCL4 = {};
 // data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
-BCL2.playerData = { "playerID" : "1464964203001",
+BCL4.playerData = { "playerID" : "1464964203001",
                     "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
-                    "width" : "480",
-                    "height" : "270",
-                    "videoID" : "2327721333001" };
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316607166001" };
 
 // template for the player object - will populate it with data using markup()
-BCL2.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL2.onTemplateLoaded\"</object>";
+BCL4.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL4.onTemplateLoaded\"</object>";
 
 // function to add the player
-BCL2.addPlayer = function () {
+BCL4.addPlayer = function () {
     var playerHTML = "";
     // populate the player object template
-    playerHTML = BCL2.markup(BCL2.playerTemplate, BCL2.playerData);
+    playerHTML = BCL4.markup(BCL4.playerTemplate, BCL4.playerData);
     // inject the player code into the DOM
-    document.getElementById("BCVplaceHolder2").innerHTML = playerHTML;
+    document.getElementById("BCVplaceHolder4").innerHTML = playerHTML;
     // instantiate the player
     brightcove.createExperiences();
 };
 
 // player template loaded handler
-BCL2.onTemplateLoaded = function (id) {
+BCL4.onTemplateLoaded = function (id) {
   // get a reference to the player
-  BCL2.player = brightcove.getExperience(id);
+  BCL4.player = brightcove.getExperience(id);
   // get references to the experience and video player modules
-  BCL2.experienceModule = BCL2.player.getModule(APIModules.EXPERIENCE);
-  BCL2.videoPlayer = BCL2.player.getModule(APIModules.VIDEO_PLAYER);
+  BCL4.experienceModule = BCL4.player.getModule(APIModules.EXPERIENCE);
+  BCL4.videoPlayer = BCL4.player.getModule(APIModules.VIDEO_PLAYER);
 };
-BCL2.markup = function (html, data) {
+BCL4.markup = function (html, data) {
     var m;
     var i = 0;
     var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
@@ -391,19 +482,115 @@ BCL2.markup = function (html, data) {
 
 <p class="page-content">Entre 1960 y 1975, viequenses interfirieron en múltiples ocasiones para paralizar los ejercicios militares y navales. En 1997, residentes de la Isla Nena se enfrentaron a la tripulación de dos buques de guerra de la Organización del Tratado del Atlántico Norte (OTAN) por invadir las zonas civiles privadas; hubo dos personas heridas.</p>
 
-<div class="" style="height: 278px !important; margin-bottom: 30px; clear: left; float: left; position: relative; width: 979px;">
-	<img src="images/mirada-al-pasado/una-batalla-historica-in-story-divider-248x278-01.jpg" width="348" height="278" border="0" alt="" title="" style="float:left; padding-right: 10px;" />
-    <img src="images/mirada-al-pasado/una-batalla-historica-in-story-divider-418x278-01.jpg" width="418" height="278" border="0" alt="" title="" style="float:left; padding-right: 10px;" />
-    <img src="images/mirada-al-pasado/una-batalla-historica-in-story-divider-213x278-01.jpg" width="213" height="278" border="0" alt="" title="" style="float:left;" />
-</div>
-
 <p class="page-content">Pero la lucha se recrudeció hace 14 años.</p>
 
 <p class="page-content">Sanes Rodríguez, de 35 años y quien trabajaba para la Marina como guardia de seguridad en un puesto de observación, murió cuando uno de dos pilotos a bordo de un avión F/A-18 lanzó "por error" una bomba como parte de su entrenamiento. El piloto -cuya identidad aún se desconoce- confundió con un blanco la torre de observación donde se encontraba Sanes Rodríguez, quien quedó inconsciente en el suelo y se desangró, según divulgó la Marina en agosto de 1999 en un informe de 38 páginas.</p>
 
+
+<div class="end_video_container_box-2316693394001" onclick="BCL5.addPlayer()">
+	<div id="BCVplaceHolder5"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL5 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL5.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316693394001" };
+
+// template for the player object - will populate it with data using markup()
+BCL5.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL5.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL5.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL5.markup(BCL5.playerTemplate, BCL5.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder5").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL5.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL5.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL5.experienceModule = BCL5.player.getModule(APIModules.EXPERIENCE);
+  BCL5.videoPlayer = BCL5.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL5.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
+
 <p class="page-content">El trágico suceso no solo avivó el repudio contra la Marina, sino que redundó en la rápida movilización de personas hacia áreas restringidas a fin de paralizar los bombardeos y sacar definitivamente el cuerpo castrense. El primero en llegar a la antigua zona de tiro fue el ambientalista Alberto de Jesús, mejor conocido como "Tito Kayak", aunque para ese entonces solo le decían "Tito". De Jesús se estableció en la playa Carrucho, donde los pescadores viequenses, quienes bautizaron el área como Monte David, habían colocado una cruz blanca en madera.</p>
 
 <p class="page-content">"Amigos del Mar fundó el primer campamento de desobediencia civil el 21 de abril de 1999 y poco a poco se multiplicó. Diecisiete días después llegó (el líder independentista) Rubén Berríos, quien fue desobediente civil por un año", recordó De Jesús, quien fue arrestado en tres ocasiones durante la lucha contra la Marina.</p>
+
+
+<div class="end_video_container_box-2316607176001" onclick="BCL6.addPlayer()">
+	<div id="BCVplaceHolder6"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL6 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL6.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316607176001" };
+
+// template for the player object - will populate it with data using markup()
+BCL6.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL6.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL6.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL6.markup(BCL6.playerTemplate, BCL6.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder6").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL6.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL6.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL6.experienceModule = BCL6.player.getModule(APIModules.EXPERIENCE);
+  BCL6.videoPlayer = BCL6.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL6.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
 
 <p class="page-content">Vieques comenzó a llenarse de prensa nacional e internacional. El exgobernador Pedro Rosselló le escribió al expresidente estadounidense, Bill Clinton, y al exsecretario de la Defensa, William Cohen, pidiendo el cese permanente de las prácticas militares en Vieques.</p>
 
@@ -438,17 +625,6 @@ BCL2.markup = function (html, data) {
 
 <p class="page-content">Tres años después de su salida de Vieques, la Marina escogió las instalaciones de Avon Park, en el estado de Florida, para realizar sus ejercicios militares y navales.</p>
 
-
-
-
-
-
-
-
-
-
-
-
                 </div>
             </div>
         </div>
@@ -462,6 +638,73 @@ BCL2.markup = function (html, data) {
 
 
 
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="parallax-one-c" id="parallax-one">
+			&nbsp;
+        </div>
+        
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="curtain-pattern-one" id="monte-carmelo">
+            <div class="row">
+                <div class="twelve columns monte-carmelo-canvas">
+                    <h1 class="page-title">MONTE CARMELO</h1>
+                    <div class="divider"></div>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="parallax-one-d" id="parallax-one">
+			&nbsp;
+        </div>
+        
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="curtain-pattern-one" id="desobediencia-civil">
+            <div class="row">
+                <div class="twelve columns desobediencia-civil-canvas">
+                    <h1 class="page-title">DESOBEDIENCIA CIVIL</h1>
+                    <div class="divider"></div>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+                    
+                </div>
+            </div>
+        </div>
 
 
 
@@ -469,10 +712,405 @@ BCL2.markup = function (html, data) {
 
 
 
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="parallax-one-e" id="parallax-one">
+			&nbsp;
+        </div>
+        
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="curtain-pattern-one" id="el-fantasma-del-cancer">
+            <div class="row">
+                <div class="twelve columns el-fantasma-del-cancer-canvas">
+                    <h1 class="page-title">EL FANTASMA DEL CANCER</h1>
+                    <div class="divider"></div>
+                    <h3 class="page-author">Por Yaritza Santiago Caraballo / yaritza.santiago@gfrmedia.com</h3>
+                    <div class="divider"></div>
+
+<div style="clear: right;float: right;position: relative;padding: 6px 0 0 10px; height: 452px !important; margin-bottom: 30px; padding-left: 25px !important;">
+	<img src="images/mirada-al-pasado/el-fantasma-del-cancer-300x450-02.jpg" width="300" height="450" alt="" title="" border="0" style="border: 1px solid #D8D8D8;" />
+</div>
+
+<p class="page-content">Vieques- Juanita  Gabino, de 67 años, gozaba  de buena salud hasta que el año pasado sintió algo raro en el seno derecho. 
+
+<p class="page-content">Una noche, después de haber cortado la grama de su patio,  le comenzó un fuerte dolor  y notó que su seno estaba muy  rojo e hinchado. Unos estudios  y una biopsia revelaron la mala noticia: tenía cáncer.
+
+<p class="page-content">Gabino no podía creer que se convertía en una estadística más de la alta incidencia de pacientes de cáncer que hay Vieques, que es un 30% más alta que en el resto de Puerto Rico.
+
+<p class="page-content">"Cuando supe que tenía cáncer, me preocupé no solo por mi vida,  si no  porque siguen saliendo más casos de cáncer en Vieques tanto en personas mayores  como en jóvenes, cosa que no se veía antes", sostuvo Gabino.
+
+<p class="page-content">Ella entiende que una de las razones para la alta incidencia es la  contaminación dejada por las prácticas bélicas. No le da lugar a otra razón, pues – según dijo – en su familia los diagnósticos de cáncer son casi inexistentes, con excepción de una tía.
+
+
+
+<div class="end_video_container_box-2316607173001" onclick="BCL7.addPlayer()">
+	<div id="BCVplaceHolder7"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL7 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL7.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316607173001" };
+
+// template for the player object - will populate it with data using markup()
+BCL7.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL7.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL7.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL7.markup(BCL7.playerTemplate, BCL7.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder7").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL7.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL7.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL7.experienceModule = BCL7.player.getModule(APIModules.EXPERIENCE);
+  BCL7.videoPlayer = BCL7.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL7.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
+
+
+<p class="page-content">Esta mujer es una de las 7,000 viequenses enfermos que demandó a la Marina de Guerra de Estados Unidos y espera algún día poder recibir alguna compensación por los daños a su salud como consecuencia de las maniobras militares.</p>
+
+<div class="elpasado-right-rail-infograph" style="">
+	<div class="elpasado-right-rail-infograph-box" style="">
+    	<img src="images/1367023155_chart_line.png" width="65" height="65" border="0" alt="" title="" />
+    </div>
+	<div class="elpasado-right-rail-infograph-text" style="">
+	    <strong><a href="#inf-muertes-por-cancer" rel="leanModal">Número de muertes por cáncer en Vieques</a></strong>
+    </div>
+</div>
+
+<div class="elpasado-right-rail-infograph" style="">
+	<div class="elpasado-right-rail-infograph-box" style="">
+    	<img src="images/1367023155_chart_line.png" width="65" height="65" border="0" alt="" title="" />
+    </div>
+	<div class="elpasado-right-rail-infograph-text" style="">
+	    <strong><a href="#inf-nuevos-casos-cancer" rel="leanModal">Nuevos casos de cáncer en Vieques</a></strong>
+    </div>
+</div>
+
+<div class="elpasado-right-rail-infograph" style="">
+	<div class="elpasado-right-rail-infograph-box" style="">
+    	<img src="images/1367023155_chart_line.png" width="65" height="65" border="0" alt="" title="" />
+    </div>
+	<div class="elpasado-right-rail-infograph-text" style="">
+	    <strong><a href="#inf-tasa-incidencia-cancer" rel="leanModal">Tasa incidencia de cáncer</a></strong>
+    </div>
+</div>
+
+<p class="page-content">Sin embargo, en el primer término del presidente Barack Obama, el Departamento federal de Justicia consiguió desestimar en el foro federal la demanda de los viequenses, aduciendo que los problemas de salud no guardaban relación con las maniobras de la Marina.</p>
+
+<p class="page-content">Pero los residentes están apelando.</p>
+
+<p class="page-content">Para un viequense vivir con cáncer es aún más duro debido a la falta de tratamientos  médicos en la isla municipio. Hay un Centro de Diagnóstico y Tratamientos (CDT), en el que no se ofrecen quimioterapias, radioterapias ni medicamentos contra este mal. La única opción para los enfermos es abordar la lancha o viajar en avión hacia la isla grande.</p>
+
+<p class="page-content">Gabino contó que en medio de su convalecencia tras removerle su seno, tenía que viajar tres veces en semana por lancha hasta la isla grande para recibir quimioterapia. Ahora, por lo menos, viaja cada 21 días. "A veces el viaje por lancha es regular, otros días es peor. Hay que aguantar, porque el mar es nuestra carretera", sostuvo.</p>
+
+<p class="page-content">Nilo Adams, sobreviviente de cáncer en el área abdominal, tuvo que hacer ajustes para su tratamiento. Se mudó por  cinco meses al municipio de San Lorenzo para poder asistir regularmente a sus citas. "Tuve que dejar todo en Vieques, de lo contrario tenía que viajar constantemente en lancha y eso era difícil", sostuvo.</p>
+
+<p class="page-content">Este maestro retirado de  65 años y residente del Barrio La Esperanza fue diagnosticado en octubre del 2011 con un linfoma mesentérico del tamaño de un puño.  Lo supo tras examinarse por fuertes dolores en el área del estómago, sentir desánimo  y bajar casi 20 libras en apenas un mes.</p>
+
+
+
+<div class="end_video_container_box-2316625442001" onclick="BCL8.addPlayer()">
+	<div id="BCVplaceHolder8"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL8 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL8.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316625442001" };
+
+// template for the player object - will populate it with data using markup()
+BCL8.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL8.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL8.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL8.markup(BCL8.playerTemplate, BCL8.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder8").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL8.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL8.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL8.experienceModule = BCL8.player.getModule(APIModules.EXPERIENCE);
+  BCL8.videoPlayer = BCL8.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL8.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
+
+
+<p class="page-content">Para él, su enfermedad era un "monstruo" que tenía que batallar producto de la contaminación ambiental en su tierra natal aunque la Marina de Guerra de Estados Unidos niegue que la enfermedad esté relacionada por las practicas bélicas. "El cáncer que tuve fue  efecto de los bombardeos porque siempre he vivido en Vieques y  donde vivo los vientos soplan a 50 millas por hora  y todo ese aire contaminado llega hasta mi casa. Eso bien notable", apuntó.</p>
+
+<p class="page-content">Si bien es cierto que la falta de servicios médicos en la Isla Nena es un dolor de cabeza, los altos costos lo son mucho más.</p>
+
+<p class="page-content">Gabino y Adams tienen plan médico, pero solo cubre algunos gastos, por los que tuvieron que buscar miles de dólares para su tratamiento.</p>
+
+<p class="page-content">En al caso de Adams,  quien fue operado y está libre de cáncer, gastó cerca de $10,000 en  procedimientos, tratamientos y medicamentos.</p>
+
+<p class="page-content">No obstante, le preocupa la prevalencia de casos de cáncer en su islita.</p>
+
+<p class="page-content">"Causa coraje, preocupación, indignación que la población de Vieques con cáncer sea tan alta. Yo tengo amigos con cáncer. De hecho, ese año 2011, caímos tres con cáncer de un cantazo. Es bien triste, porque llegué a pensar que me iba a morir, que no iba a ver más a mi esposa, mis hijos, mis cuatro nietos", apuntó.</p>
+
+<p class="page-content">José Emilio Adams, de 35 años, es un viequense que no tuvo la dicha de ver crecer a su hijita Milivy  pues el cáncer le robó a su pequeña de apenas cinco años.  Milivy, quien se convirtió en el símbolo de la lucha viequense, fue diagnosticada a los dos años con  neuroblastoma, una forma de cáncer infantil agresivo con una alta mortalidad.</p>
 
 
 
 
+<div class="end_video_container_box-2316693390001" onclick="BCL9.addPlayer()">
+	<div id="BCVplaceHolder9"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL9 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL9.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316693390001" };
+
+// template for the player object - will populate it with data using markup()
+BCL9.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL9.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL9.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL9.markup(BCL9.playerTemplate, BCL9.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder9").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL9.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL9.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL9.experienceModule = BCL9.player.getModule(APIModules.EXPERIENCE);
+  BCL9.videoPlayer = BCL9.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL9.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
+
+
+
+<p class="page-content">El tumor le empezó en el estómago y se le regó en todo el cuerpo, hasta llegar al cerebro, donde comenzó a crecer. Su padre contó que dado a la gravedad y lo avanzado de la enfermedad la niña, a su corta edad, fue desahuciada  por los médicos en Puerto Rico.</p>
+
+<p class="page-content">"Me tuve que ir a Filadelfia, donde un doctor francés le empezó el tratamiento nuevo con una quimioterapia que era lo último. La limpiaron hasta que al tiempo volvió el cáncer en su cerebro y era más agresivo. Mi hija no aguantó", dijo Adams.</p>
+
+<p class="page-content">Contó que fue una dura batalla en la que tuvo que invertir más de $200,000 gracias a la ayuda de su familia y de la gente de Vieques y de Puerto Rico. "Yo digo que la contaminación aquí es demasiado. El porciento de enfermos es muy demasiado es alto para una isla tan pequeña. A veces hay una semana completa que varios mueren de cáncer en Vieques. Aquí todo el mundo tiene cáncer", dijo el joven, quien también hace unas semanas perdió un abuelo por la misma enfermedad.</p>
+
+<p class="page-content">Zaida Torres se hizo eco de ese sufrimiento que enfrentan  muchas familias en la Isla Nena. En su caso, ella perdió a su hija Liza, de 15 años, pero también a un primo, a una cuñada y a su mamá, todos por cáncer.</p>
+
+
+
+
+<div class="end_video_container_box-2316625447001" onclick="BCL10.addPlayer()">
+	<div id="BCVplaceHolder10"></div>
+</div>
+
+<script type="text/javascript">
+// namespace to keep the global clear of clutter
+var BCL10 = {};
+// data for our player -- note that it must have ActionScript/JavaScript APIs enabled!!
+BCL10.playerData = { "playerID" : "1464964203001",
+                    "playerKey" : "AQ~~,AAAAGcjNSFk~,aE1H1xGur600ubpwu2XMAQ1km24vWSZG",
+                    "width" : "550",
+                    "height" : "309",
+                    "videoID" : "2316625447001" };
+
+// template for the player object - will populate it with data using markup()
+BCL10.playerTemplate = "<div style=\"display:none\"></div><object id=\"myExperience{{videoID}}\" class=\"BrightcoveExperience\"><param name=\"bgcolor\" value=\"#000000\" /><param name=\"width\" value=\"{{width}}\" /><param name=\"height\" value=\"{{height}}\" /><param name=\"playerID\" value=\"{{playerID}}\" /><param name=\"playerKey\" value=\"{{playerKey}}\" /><param name=\"isVid\" value=\"true\" /><param name=\"isUI\" value=\"true\" /><param name=\"dynamicStreaming\" value=\"true\" /><param name=\"@videoPlayer\" value=\"{{videoID}}\"; /><param name=\"templateLoadHandler\" value=\"BCL10.onTemplateLoaded\"</object>";
+
+// function to add the player
+BCL10.addPlayer = function () {
+    var playerHTML = "";
+    // populate the player object template
+    playerHTML = BCL10.markup(BCL10.playerTemplate, BCL10.playerData);
+    // inject the player code into the DOM
+    document.getElementById("BCVplaceHolder10").innerHTML = playerHTML;
+    // instantiate the player
+    brightcove.createExperiences();
+};
+
+// player template loaded handler
+BCL10.onTemplateLoaded = function (id) {
+  // get a reference to the player
+  BCL10.player = brightcove.getExperience(id);
+  // get references to the experience and video player modules
+  BCL10.experienceModule = BCL10.player.getModule(APIModules.EXPERIENCE);
+  BCL10.videoPlayer = BCL10.player.getModule(APIModules.VIDEO_PLAYER);
+};
+BCL10.markup = function (html, data) {
+    var m;
+    var i = 0;
+    var match = html.match(data instanceof Array ? /{{\d+}}/g : /{{\w+}}/g) || [];
+
+    while (m = match[i++]) {
+        html = html.replace(m, data[m.substr(2, m.length-4)]);
+    }
+
+    return html;
+};
+</script>
+
+
+
+<p class="page-content">Liza murió en 1995 tras sufrir leucemia linfocítica aguda.</p>
+
+<p class="page-content">"Ella era mi bebé, una joven muy diferente, centrada que quería ser artista gráfico, pero nunca lo logró", sostuvo Torres, quien como muchos viequenses urgen y exigen atención a la salud de la isla municipio.</p>
+
+<p class="page-content">"Es duro saber que allegados siguen  muriendo por estas enfermedades, que cada día hay otra muerte por cáncer. Es nuestro derecho de estar aquí, de vivir en Vieques, es nuestra tierra. Merecemos atención", puntualizó.</p>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="parallax-one-f" id="parallax-one">
+			&nbsp;
+        </div>
+        
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        <!-- -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
+        
+        <div class="curtain-pattern-one" id="inspiracion-artistica">
+            <div class="row">
+                <div class="twelve columns inspiracion-artistica-canvas">
+                    <h1 class="page-title">INSPIRACIÓN ARTÍSTICA</h1>
+                    <div class="divider"></div>
+                    <h3 class="page-author">Por María Ivette Vega Calles / maria.vega@gfrmedia.com</h3>
+                    <div class="divider"></div>
+
+<div style="clear: right;float: right;position: relative;padding: 6px 0 0 10px; height: 452px !important; margin-bottom: 30px; padding-left: 25px !important;">
+	<img src="images/mirada-al-pasado/inspiracion-artistica-300x450-01.jpg" width="300" height="450" alt="" title="" border="0" style="border: 1px solid #D8D8D8;" />
+</div>
+
+<p class="page-content">Desde que inició la acción civil para presionar a la Marina de Guerra de los Estados Unidos a que culminara sus prácticas y maniobras de guerra, y saliera de la isla municipio de Vieques, un grupo de artistas, tanto locales como internacionales, se solidarizó con la lucha.</p>
+
+<p class="page-content">Una de las primeras iniciativas fue una declaración que se presentó el 23 de abril de 2001, la cual exponía el compromiso del gremio con la lucha y una petición al pueblo para que acudiera a una marcha contra la presencia de la Marina en Vieques, que se celebró tres días después, coincidiendo con el reinicio de los bombardeos en la Isla Nena.</p>
+
+<p class="page-content">Unos 110 actores participaron en la iniciativa, encabezada por el cineasta y actor Jacobo Morales.</p>
+
+<p class="page-content">"A pesar de que en innumerables ocasiones y de incontables maneras el pueblo se ha manifestado en contra de los ejercicios bélicos de la Marina en Vieques, de haber hecho marchas multitudinarias, de haber levantado su voz de protesta por las enfermedades y muertes causadas por las municiones detonadas en la Isla Nena, de haberse expresado en contra de las prácticas de tiro en esa isla, la Marina desafía la voluntad del pueblo", leía la carta.</p>
+
+<p class="page-content">Entre los artistas que firmaron la misiva se encontraban Cordelia González, Elia Enid Cadilla, Suzette Bacó, Awilda Carbia, Mari Carmen Avilés, Ernesto Javier Concepción, Jimmy Navarro, Eugenio Monclova, Braulio Castillo, hijo; Tito Auger y Andy Montañez, entre tantos.</p>
+ 
+<p class="page-content">Pero otros artistas se involucraron más en la lucha aceptando el llamado a la desobediencia civil e invadiendo terrenos de la Marina en aras de impedir los bombardeos.</p>
+
+<p class="page-content">El cantante mexicano Emanuel recorrió en lancha las aguas viequense, mientras que el actor de Hollywood Edward James Olmos fue arrestado el 2 de mayo de 2001 y estuvo en prisión 20 días por haber entrado a terrenos de la Marina.</p>
+
+<div class="vieques_collage_divider light no-phone"></div>
+
+<div class="vieques_collage_photolayout no-phone vieques_collage_clearfix">
+    <div class="vieques_collage_photolayout_left">
+        <img src="images/mirada-al-pasado/inspiracion-artistica-collage-490x325-01.jpg" width="490" height="325">
+        <div class="vieques_collage_caption first">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. <span class="vieques_collage_credit">Archivo El Nuevo Día</span></div>
+        <img src="images/mirada-al-pasado/inspiracion-artistica-collage-490x325-02.jpg" width="490" height="325">
+        <div class="vieques_collage_caption">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. <span class="vieques_collage_credit">Archivo El Nuevo Día</span></div>
+    </div>
+    <div class="vieques_collage_photolayout_right">
+        <img src="images/mirada-al-pasado/inspiracion-artistica-collage-385x575-01.jpg" width="385" height="575">
+        <div class="vieques_collage_caption">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. <span class="vieques_collage_credit">Archivo El Nuevo Día</span></div>
+    </div>
+</div>
+
+<div class="vieques_collage_divider light no-phone"></div>
+
+<p class="page-content">El arresto de los cantantes Draco Rosa y Danny Rivera, y la actriz Rosita Velázquez se llegó a considerar un "secuestro político", porque al principio se desconocía su paradero.</p>
+
+<p class="page-content">Al igual que Olmos, Draco enfrentó un juicio federal que fue visto por el juez Salvador Casellas.</p>
+
+<p class="page-content">Otros artistas que cometieron desobediencia civil fueron la actriz Cristina Soler, el actor Carlos Fonseca, el músico Gustavo Castrodad, y los artistas gráficos Rafael Trelles, Marta Pérez García y Luis Alonso. Igualmente, figuras del teatro como Magali Carrasquillo, Georgina Borri, Teresa Hernández, Ineabelle Colón, y el productor artístico Pedro Muñiz. Artistas plásticos como Lorenzo Homar, Antonio Martorell, Rafael Tufiño, Myrna Báez, Luis Hernández Cruz y Antonio Maldonado, entre otros, firmaron una declaración en apoyo a un grupo de colegas arrestados por desobediencia civil.</p>
+
+<p class="page-content">Por su parte, Tito Auger, Jessica Cristina y Gabriel Ferry se mantuvieron activos durante las protestas y les cantaban a los manifestantes.</p>
+
+<p class="page-content">De hecho, junto a su banda Fiel a la Vega, Auger creó el tema "Canción para Vieques". El tema se convirtió, junto a "Que se vaya la Marina", de Dayivet Alemán, en los himnos de la lucha civil.</p>
+
+<p class="page-content">El 1ro de mayo de 2003 se realizó un concierto para celebrar la salida de la Marina en el que participaron Danny Rivera, Andy Montañez, Tito Auger, Charlie Aponte y Domingo Quiñones.</p>
+
+<p class="page-content">Y próximo a cumplirse el décimo aniversario de la salida de la Marina, un grupo de artistas vuelve a solidarizarse con Vieques. Se trata de cantantes que han donado canciones para la programación de una emisora radial pública viequense que irá al aire en junio: Calle 13, Tito Auger, Roy Brown, Mikie Rivera, Zoraida Santiago, El Topo, Los Lonely Boys y Willie Nelson, entre otros.</p>
+
+                </div>
+            </div>
+        </div>
 
 
 
@@ -491,31 +1129,9 @@ BCL2.markup = function (html, data) {
         
         <div class="curtain-pattern-one" id="protagonistas-de-una-lucha">
             <div class="row">
-                <div class="twelve columns">
+                <div class="twelve columns protagonistas-de-una-lucha-canvas">
                     <h1 class="page-title">PROTAGONISTAS DE UNA LUCHA</h1>
                     <div class="divider"></div>
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
-                    <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-                    
                     <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
                     
                     <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -552,7 +1168,7 @@ BCL2.markup = function (html, data) {
         
         <div class="curtain-pattern-one" id="vieques-hoy">
             <div class="row">
-                <div class="twelve columns">
+                <div class="twelve columns vieques-hoy-canvas">
                     <h1 class="page-title">VIEQUES HOY</h1>
                     <div class="divider"></div>
                     <p class="page-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
@@ -742,6 +1358,7 @@ BCL2.markup = function (html, data) {
 			//outerHeight (true/false) - Whether or not jQuery should use it's outerHeight option to determine when a section is in the viewport
 			$('.parallax-one').parallax("50%", 0.25);
 			$('.parallax-one-b').parallax("50%", 0.25);
+			$('.parallax-one-e').parallax("50%", 0.25);
 			$('.parallax-two').parallax("50%", 0.25);
 			$('.parallax-three').parallax("50%", 0.25);
 		})
@@ -848,6 +1465,9 @@ BCL2.markup = function (html, data) {
     
     <script src="javascripts/jquery.leanModal.min.js"></script>
 	<div id="inf-desempleo" class="screenshot-lg"><img src="images/infografias/DESEMPLEO.jpg" /><a href="#" id="close-modal">Close Modal</a></div>
+    <div id="inf-muertes-por-cancer" class="screenshot-lg"><img src="images/infografias/MUERTES_CANCER.jpg" /><a href="#" id="close-modal">Close Modal</a></div>
+    <div id="inf-nuevos-casos-cancer" class="screenshot-lg"><img src="images/infografias/NUEVOS_CASOS_CANCER.jpg" /><a href="#" id="close-modal">Close Modal</a></div>
+    <div id="inf-tasa-incidencia-cancer" class="screenshot-lg"><img src="images/infografias/TASA_INCIDENCIA_CANCER.jpg" /><a href="#" id="close-modal">Close Modal</a></div>
 
 
 </body>

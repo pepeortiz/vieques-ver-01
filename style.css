@@ -293,9 +293,19 @@ h1.homepage-title {
 
 h1.page-title {
 	font-family: 'Lato', sans-serif;
-	color:#281221;
+	color:#000000;
 	font-size:52px;
 	line-height:52px;
+	text-shadow:none;
+	font-weight:700;
+	text-align:center;
+}
+
+h3.page-author {
+	font-family: 'Lato', sans-serif;
+	color:#000000;
+	font-size:18px;
+	line-height:18px;
 	text-shadow:none;
 	font-weight:700;
 	text-align:center;
@@ -414,10 +424,34 @@ form input {
 .parallax-one-a {
 	width:100%;
 	height:661px;
-	background:#000 url(images/parallax/curtain-01-1920x661.jpg) 50% 0 no-repeat;
+	background:#fff url(images/parallax/curtain-01-1920x661.jpg) 50% 0 no-repeat;
 }
 
 .parallax-one-b {
+	width:100%;
+	height:500px;
+	background:#000 url(images/parallax/curtain-02-1920x1000-b.jpg) 50% 0 no-repeat;
+}
+
+.parallax-one-c {
+	width:100%;
+	height:500px;
+	background:#000 url(images/parallax/curtain-02-1920x1000-b.jpg) 50% 0 no-repeat;
+}
+
+.parallax-one-d {
+	width:100%;
+	height:500px;
+	background:#000 url(images/parallax/curtain-02-1920x1000-b.jpg) 50% 0 no-repeat;
+}
+
+.parallax-one-e {
+	width:100%;
+	height:500px;
+	background:#000 url(images/parallax/curtain-02-e-1920x1000.jpg) 50% 0 no-repeat;
+}
+
+.parallax-one-f {
 	width:100%;
 	height:500px;
 	background:#000 url(images/parallax/curtain-02-1920x1000-b.jpg) 50% 0 no-repeat;
@@ -544,6 +578,34 @@ p.mirada-al-pasado-text {
 	padding-top: 20px;
 }
 
+
+
+.elpasado-right-rail-infograph {
+	clear: right;
+	float: right;
+	position: relative;
+	padding: 6px;
+	width: 300px !important;
+	background-color: #E9E9E9;
+	border: 1px solid #D8D8D8;
+	margin: 20px 0 20px 20px;
+}
+
+.elpasado-right-rail-infograph-box {
+	float:left;
+	width: 70px;
+}
+
+.elpasado-right-rail-infograph-text {
+	float:right;
+	width: 215px;
+	font-size: 14px;
+	padding-top: 20px;
+}
+
+
+
+
 .una-batalla-historica-canvas p {
 	padding: 0 315px 20px 50px;
 	margin: 0;
@@ -554,6 +616,35 @@ p.mirada-al-pasado-text {
 	margin: 0;
 }
 
+.monte-carmelo-canvas p {
+	padding: 0 315px 20px 50px;
+	margin: 0;
+}
+
+.desobediencia-civil-canvas p {
+	padding: 0 315px 20px 50px;
+	margin: 0;
+}
+
+.el-fantasma-del-cancer-canvas p {
+	padding: 0 315px 20px 50px;
+	margin: 0;
+}
+
+.inspiracion-artistica-canvas p {
+	padding: 0 315px 20px 50px;
+	margin: 0;
+}
+
+.protagonistas-de-una-lucha-canvas p {
+	padding: 0 315px 20px 50px;
+	margin: 0;
+}
+
+.vieques-hoy-canvas p {
+	padding: 0 315px 20px 50px;
+	margin: 0;
+}
 
 /* -----------------------------------------
    Custom - Protagonistas de una lucha
@@ -630,7 +721,7 @@ p.mirada-al-pasado-text {
 	z-index:100;
 }
 .screenshot-lg{
-	padding:20px;
+	padding:8px;
 	display:none;
 	position:relative;
 	background-color:#C4161C;
@@ -669,40 +760,175 @@ p.mirada-al-pasado-text {
 /* -----------------------------------------
    BC Video player (custom)
 ----------------------------------------- */
-
-.end_video_container_box {
-
-	background-color:#000000;
-	width:490px;
-	height:280px;
-	padding:4px;
-	margin-left:50px;
-	cursor: hand;
-	cursor: pointer;
-	border: 1px solid #808080;
+/* ---------------------------------------------
+2316625449001 */
+.end_video_container_box-2316625449001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316625449001 {
+	background: #000 url(images/video-still-549x309-2316625449001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316625449001:hover {
+	background: url(images/video-still-549x309-2316625449001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316625440001 */
+.end_video_container_box-2316625440001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316625440001 {
+	background: #000 url(images/video-still-549x309-2316625440001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316625440001:hover {
+	background: url(images/video-still-549x309-2316625440001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316693393001*/
+.end_video_container_box-2316693393001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316693393001 {
+	background: #000 url(images/video-still-549x309-2316693393001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316693393001:hover {
+	background: url(images/video-still-549x309-2316693393001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316607166001*/
+.end_video_container_box-2316607166001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316607166001 {
+	background: #000 url(images/video-still-549x309-2316607166001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316607166001:hover {
+	background: url(images/video-still-549x309-2316607166001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316693394001*/
+.end_video_container_box-2316693394001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316693394001 {
+	background: #000 url(images/video-still-549x309-2316693394001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316693394001:hover {
+	background: url(images/video-still-549x309-2316693394001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316607176001 */
+.end_video_container_box-2316607176001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316607176001 {
+	background: #000 url(images/video-still-549x309-2316607176001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316607176001:hover {
+	background: url(images/video-still-549x309-2316607176001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316607173001 */
+.end_video_container_box-2316607173001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316607173001 {
+	background: #000 url(images/video-still-549x309-2316607173001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316607173001:hover {
+	background: url(images/video-still-549x309-2316607173001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316625442001 */
+.end_video_container_box-2316625442001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316625442001 {
+	background: #000 url(images/video-still-549x309-2316625442001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316625442001:hover {
+	background: url(images/video-still-549x309-2316625442001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316693390001 */
+.end_video_container_box-2316693390001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316693390001 {
+	background: #000 url(images/video-still-549x309-2316693390001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316693390001:hover {
+	background: url(images/video-still-549x309-2316693390001-on.jpg) 50% 50% no-repeat;
+}
+/* ---------------------------------------------
+2316625447001 */
+.end_video_container_box-2316625447001 {
+	background-color:#000000; width:559px; height:319px; padding:4px; margin:0 0 20px 50px; cursor: hand; cursor: pointer; border: 1px solid #808080;
+}
+.end_video_container_box-2316625447001 {
+	background: #000 url(images/video-still-549x309-2316625447001-off.jpg) 50% 50% no-repeat;
+}
+.end_video_container_box-2316625447001:hover {
+	background: url(images/video-still-549x309-2316625447001-on.jpg) 50% 50% no-repeat;
 }
 
-.end_video_container_box {
 
-	background: #000 url(images/416_player_Click_to_play_off.png) 50% 50% no-repeat;
-	z-index: 1;
+
+
+
+
+
+
+/* -----------------------------------------
+   Custom - Photo collage (inspiracion art)
+----------------------------------------- */
+
+.vieques_collage_divider.light {
+height: 1px;
+background: #e2e2e2;
+width: 515px;
+margin: 35px auto;
+clear: both;
 }
 
-.end_video_container_box:hover {
-	background: url(images/416_player_click_to_play_on.png) 50% 50% no-repeat;
-	z-index: 1;
+.vieques_collage_divider {
+width: 65px;
+height: 2px;
+background: #333;
+margin: 20px auto;
 }
 
-.video2316625440001 {
-	background:url(images/video-still-480x270-2316625440001.jpg) no-repeat center;
-	z-index: -1;	
+.vieques_collage_clearfix, .wrap {
+display: block;
 }
 
+.vieques_collage_photolayout_left {
+float: left;
+width: 490px;
+}
 
+.vieques_collage_photolayout_left .caption.first {
+margin-bottom: 20px;
+}
 
+.vieques_collage_caption {
+font-weight: 300;
+font-size: 13px;
+line-height: 16px;
+color: #666;
+}
 
+.vieques_collage_credit {
+font-family: Arial,Helvetica,sans-serif;
+font-size: 10px;
+line-height: 13px;
+color: #999;
+}
 
-
+.vieques_collage_photolayout_right {
+float: left;
+width: 385px;
+padding-left: 25px;
+}
 
 
 
