@@ -233,6 +233,8 @@ form.custom .custom.disabled { background-color: #dddddd; }
 
 .two, .row .two { width: 16.66667%; }
 
+.two-five, .row .two-five { width: 20%; } /* custom - pepe */
+
 .three, .row .three { width: 25%; }
 
 .four, .row .four { width: 33.33333%; }
@@ -309,9 +311,13 @@ form.custom .custom.disabled { background-color: #dddddd; }
 
 .pull-ten { right: 83.33333%; }
 
+img, object, embed { max-width: 100%; height: auto; }
+
+object, embed { height: 100%; }
+
 img { height: auto; }
 
-img, object, embed { max-width: none; }
+/*img, object, embed { max-width: none; }*/
 
 img { -ms-interpolation-mode: bicubic; }
 
